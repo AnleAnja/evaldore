@@ -20,13 +20,16 @@ class _WeightCriteriaState extends State<WeightCriteria> {
     final textTheme = theme.textTheme;
     return Column(
       children: [
-        Text(criteria.name, style: textTheme.headlineMedium),
         Padding(
-          padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+          padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+          child: Text(criteria.name, style: textTheme.headlineMedium),
+        ),
+        Padding(
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           child: Text(criteria.description, style: textTheme.labelMedium,),
         ),
         Padding(
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(10.0),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -53,7 +56,7 @@ class _WeightCriteriaState extends State<WeightCriteria> {
               ),
               Row(
                 children: [
-                  const Text("Unwichtig"),
+                  const Text("1"),
                   Radio(
                       value: 1,
                       groupValue: criteria.value,
@@ -74,7 +77,7 @@ class _WeightCriteriaState extends State<WeightCriteria> {
               ),
               Row(
                 children: [
-                  const Text("Neutral"),
+                  const Text("2"),
                   Radio(
                       value: 2,
                       groupValue: criteria.value,
@@ -95,7 +98,7 @@ class _WeightCriteriaState extends State<WeightCriteria> {
               ),
               Row(
                 children: [
-                  const Text("Wichtig"),
+                  const Text("3"),
                   Radio(
                       value: 3,
                       groupValue: criteria.value,

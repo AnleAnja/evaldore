@@ -1,4 +1,5 @@
 import 'package:evaldore/displaycategory.dart';
+import 'package:evaldore/evaluation.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -307,7 +308,12 @@ class _CategoryOverviewState extends State<CategoryOverview> {
               ),
               _showButton
                   ? ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                              return Evaluation(categories: _categories);
+                        }));
+                      },
                       child: const Text('Auswertung'),
                     )
                   : Container()
