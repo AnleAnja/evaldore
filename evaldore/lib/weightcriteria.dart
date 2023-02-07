@@ -22,7 +22,7 @@ class _WeightCriteriaState extends State<WeightCriteria> {
       children: [
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-          child: Text(criteria.name, style: textTheme.headlineMedium),
+          child: Text(criteria.name, style: textTheme.headlineSmall),
         ),
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),

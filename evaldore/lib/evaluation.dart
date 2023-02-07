@@ -257,8 +257,13 @@ class Evaluation extends StatelessWidget {
           Text(
               'Das am besten geeignete Framwork ist ${orderedFrameworks.first.name} mit ${orderedFrameworks.first.sum} Punkten',
               style: textTheme.headlineMedium),
+          const Padding(
+            padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
+            child: Divider(),
+          ),
+          Text(orderedFrameworks.first.description),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.fromLTRB(0, 20, 0, 10),
             child: InkWell(
                 child: const Text('Getting Started', style: TextStyle(
                   color: Colors.blue,
@@ -266,7 +271,6 @@ class Evaluation extends StatelessWidget {
                 )),
                 onTap: () => launchUrl(orderedFrameworks.first.link)),
           ),
-          Text(orderedFrameworks.first.description),
           const Padding(
             padding: EdgeInsets.fromLTRB(0, 10, 0, 10),
             child: Divider(),
