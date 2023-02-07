@@ -31,7 +31,8 @@ class CategoryOverview extends StatefulWidget {
 }
 
 class _CategoryOverviewState extends State<CategoryOverview> {
-  var category = Category(name: '', progress: false, criteria: []);
+  var _category = Category(name: '', progress: false, criteria: []);
+  var _showButton = true;
   final List<Category> _categories = [
     Category(name: 'Community und Support', progress: false, criteria: [
       Criteria(
@@ -268,32 +269,49 @@ class _CategoryOverviewState extends State<CategoryOverview> {
 
   @override
   Widget build(BuildContext context) {
+    for (var category in _categories) {
+      if (!category.progress) _showButton = false;
+    }
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
         ),
-        body: ListView.builder(
-          itemCount: _categories.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-                onTap: () async {
-                  category = await Navigator.push(context,
-                      MaterialPageRoute(builder: (context) {
-                    return DisplayCategory(category: _categories[index]);
-                  }));
-                  setState(() {
-                    _categories[index] = category;
-                  });
+        body: SingleChildScrollView(
+            physics: const ScrollPhysics(),
+            child: Column(children: <Widget>[
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: _categories.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                      onTap: () async {
+                        _category = await Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return DisplayCategory(category: _categories[index]);
+                        }));
+                        setState(() {
+                          _categories[index] = _category;
+                          if(_categories.every((element) => element.progress == true)) _showButton = true;
+                        });
+                      },
+                      child: ListTile(
+                        leading: (_categories[index].progress
+                            ? const Icon(Icons.check_circle,
+                                color: Colors.lightGreen)
+                            : const Icon(Icons.pending)),
+                        title: Text(_categories[index].name),
+                        trailing: const Icon(Icons.keyboard_arrow_right),
+                      ));
                 },
-                child: ListTile(
-                  leading: (_categories[index].progress
-                      ? const Icon(Icons.check_circle, color: Colors.lightGreen)
-                      : const Icon(Icons.pending)),
-                  title: Text(_categories[index].name),
-                  trailing: const Icon(Icons.keyboard_arrow_right),
-                ));
-          },
-        ));
+              ),
+              _showButton
+                  ? ElevatedButton(
+                      onPressed: () {},
+                      child: const Text('Auswertung'),
+                    )
+                  : Container()
+            ])));
   }
 }
 

@@ -16,20 +16,25 @@ class _DisplayCategoryState extends State<DisplayCategory> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-        onWillPop: () {
-          Navigator.pop(context, widget.category);
-          return Future(() => false);
-        },
-        child: Scaffold(
-          appBar: AppBar(title: Text(widget.category.name)),
-          body: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: List.generate(widget.category.criteria.length, (index) {
-                return WeightCriteria(category: widget.category, index: index);
-              }),
-            ),
+          onWillPop: () {
+            Navigator.pop(context, widget.category);
+            return Future(() => false);
+          },
+          child: Scaffold(
+            appBar: AppBar(title: Text(widget.category.name)),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
+                  children:
+                  List.generate(widget.category.criteria.length, (index) {
+                    return WeightCriteria(
+                        category: widget.category, index: index);
+                  }),
+                ),
+              ),
+            )
           ),
-        ));
+    );
   }
 }
