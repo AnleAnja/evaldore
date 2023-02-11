@@ -210,7 +210,7 @@ class Evaluation extends StatelessWidget {
           Assessment(name: 'Reaktionszeit', value: 5),
           Assessment(name: 'Stromverbrauch', value: 4),
           Assessment(name: 'Größe der Anwendungsdatei', value: 5),
-          Assessment(name: 'Lines of Code', value: 3),
+          Assessment(name: 'Lines of Code', value: 4),
           Assessment(name: 'Erweiterungen', value: 4),
           Assessment(name: 'Unterstützte Betriebssysteme', value: 5),
           Assessment(name: 'Unterstützungsqualität', value: 5),
